@@ -27,6 +27,7 @@ namespace character_control
 
         int enemycount = 2;
         int keycount = 3;
+        int pickedupkeys = 0;
         public Form1()
         {
             InitializeComponent();
@@ -37,36 +38,52 @@ namespace character_control
 
             Playermovement();
             Enemymovement();
+           
             Gameover();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Makeenemies();
-            MakeKeys();
+            MakeKeys(); 
         }
 
         private void keydownpress(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+
+                if (e.KeyCode == Keys.Left )
+                {
+                    Moveleft = true;
+                }
+
+                if (e.KeyCode == Keys.Right)
+                {
+                    Moveright = true;
+                }
+
+                if (e.KeyCode == Keys.Up)
+                {
+                    Moveup = true;
+                }
+
+                if (e.KeyCode == Keys.Down)
+                {
+                    Movedown = true;
+                }
+
+            foreach (PictureBox key in keylist)
             {
-                Moveleft = true;
+                if (player.Bounds.IntersectsWith(key.Bounds))
+                {
+                    if (e.KeyCode == Keys.F)
+                    {
+                        this.Controls.Remove(key);
+                        pickedupkeys++;
+                        keytext.Text = pickedupkeys.ToString();
+                    }
+                }
             }
 
-            if (e.KeyCode == Keys.Right)
-            {
-                Moveright = true;
-            }
-
-            if (e.KeyCode == Keys.Up)
-            {
-                Moveup = true;
-            }
-
-            if (e.KeyCode == Keys.Down)
-            {
-                Movedown = true;
-            }
         }
 
         private void keyuppress(object sender, KeyEventArgs e)
@@ -141,7 +158,7 @@ namespace character_control
             {
                 player.Left -= playerspeed;
             }
-            if (Moveright == true && player.Left < 1080)
+            if (Moveright == true && player.Left < 1740)
             {
                 player.Left += playerspeed;
             }
@@ -149,7 +166,7 @@ namespace character_control
             {
                 player.Top -= playerspeed;
             }
-            if (Movedown == true && player.Top < 561)
+            if (Movedown == true && player.Top < 840)
             {
                 player.Top += playerspeed;
             }
@@ -183,7 +200,7 @@ namespace character_control
                 }
             }
         }
-
+      
         private void Gameover()
         {
             foreach (PictureBox enemy in enemylist)
