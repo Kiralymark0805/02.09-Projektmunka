@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace character_control
 
         List<PictureBox> enemylist = new List<PictureBox>();
         List<PictureBox> keylist = new List<PictureBox>();
+        List<Panel> panellist = new List<Panel>();
 
         bool Moveup, Movedown, Moveleft, Moveright;
 
@@ -33,12 +35,70 @@ namespace character_control
             InitializeComponent();
         }
 
+        private void Walls()
+        {
+
+            panellist.Add(panel1);
+            panellist.Add(panel2);
+            panellist.Add(panel3);
+            panellist.Add(panel4);
+            panellist.Add(panel5);
+            panellist.Add(panel6);
+            panellist.Add(panel7);
+            panellist.Add(panel8);
+            panellist.Add(panel9);
+            panellist.Add(panel10);
+            panellist.Add(panel11);
+            panellist.Add(panel12);     
+            panellist.Add(panel13);
+            panellist.Add(panel14);
+            panellist.Add(panel15);
+            panellist.Add(panel16);
+            panellist.Add(panel17);
+            panellist.Add(panel18);
+            panellist.Add(panel19); 
+            panellist.Add(panel20);
+            panellist.Add(panel21);
+
+            foreach (Panel wall in panellist)
+            {
+                if (player.Bounds.IntersectsWith(wall.Bounds))
+                {
+                    int playerX = player.Location.X;
+                    int playerY = player.Location.Y;
+                    int playerSW = player.Size.Width;
+                    int playerSH = player.Size.Height;
+
+                    int wallX = wall.Location.X;
+                    int wallY = wall.Location.Y;
+                    int wallSW = wall.Size.Width;
+                    int wallSH = wall.Size.Height;
+
+                    if (playerX > wallX - playerSW)
+                    {
+                        player.Left -= playerspeed;
+                    }
+                    if (playerX < wallX - playerSW)
+                    {
+                        player.Left += playerspeed;
+                    }
+                    if (playerY > wallY - playerSH)
+                    {
+                        player.Top -= playerspeed;
+                    }
+                    if (playerY < wallY - playerSH)
+                    {
+                        player.Top += playerspeed;
+                    }
+                }
+            }
+        }
         private void movetimerevent(object sender, EventArgs e)
         {
 
             Playermovement();
+            Walls();
             Enemymovement();
-           
             Gameover();
         }
 
@@ -77,7 +137,7 @@ namespace character_control
                 {
                     if (e.KeyCode == Keys.F)
                     {
-                        this.Controls.Remove(key);
+                        house.Controls.Remove(key);
                         pickedupkeys++;
                         keytext.Text = pickedupkeys.ToString();
                     }
@@ -109,6 +169,27 @@ namespace character_control
             }
         }
 
+        private void Playermovement()
+        {
+
+            if (Moveleft == true && player.Left > 0)
+            {
+                player.Left -= playerspeed;
+            }
+            if (Moveright == true && player.Left < 1305)
+            {
+                player.Left += playerspeed;
+            }
+            if (Moveup == true && player.Top > 0)
+            {
+                player.Top -= playerspeed;
+            }
+            if (Movedown == true && player.Top < 683)
+            {
+                player.Top += playerspeed;
+            }
+        }
+
         private void Makeenemies()
         {
             while (enemylist.Count != enemycount)
@@ -120,13 +201,22 @@ namespace character_control
                 enemy.BackColor = Color.Red;
                 enemy.Tag = "enemy";
 
-                int enemyx = Randomnumber.Next(this.house.Width - enemy.Width);
-                int enemyy = Randomnumber.Next(this.house.Height - enemy.Height);
 
-                enemy.Location = new Point(enemyx, enemyy);
+                foreach (Panel wall in panellist)
+                {
+                    int wallX = wall.Location.X;
+                    int wallY = wall.Location.Y;
+                    int wallSW = wall.Size.Width;
+                    int wallSH = wall.Size.Height;                          
 
-                enemylist.Add(enemy); 
-                house.Controls.Add(enemy);
+                    int enemyx = Randomnumber.Next((this.house.Width - enemy.Width));
+                    int enemyy = Randomnumber.Next(this.house.Height - enemy.Height);
+
+                    enemy.Location = new Point(enemyx, enemyy);
+
+                    enemylist.Add(enemy); 
+                    house.Controls.Add(enemy); 
+                }
             }
 
         }
@@ -153,35 +243,9 @@ namespace character_control
             }
         }
 
-        private void room1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Playermovement()
-        {
-
-            if (Moveleft == true && player.Left > 0)
-            {
-                player.Left -= playerspeed;
-            }
-            if (Moveright == true && player.Left < 1305)
-            {
-                player.Left += playerspeed;
-            }
-            if (Moveup == true && player.Top > 0)
-            {
-                player.Top -= playerspeed;
-            }
-            if (Movedown == true && player.Top < 683)
-            {
-                player.Top += playerspeed;
-            }
-        }
-
         private void Enemymovement()
         {
-            foreach (Control enemies in this.Controls)
+            foreach (Control enemies in house.Controls)
             {
                 if ((string)enemies.Tag == "enemy")
                 {
@@ -214,7 +278,7 @@ namespace character_control
             {
                 if (player.Bounds.IntersectsWith(enemy.Bounds))
                 {
-                    this.Controls.Remove(enemy);
+                    house.Controls.Remove(enemy);
                 }
             }
         }
