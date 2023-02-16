@@ -31,3 +31,14 @@ C:\Users\Mark\source\repos\02.09-Projektmunka\character control\character contro
 C:\Users\Mark\source\repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.csproj.CoreCompileInputs.cache
 C:\Users\Mark\source\repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.exe
 C:\Users\Mark\source\repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.pdb
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\bin\Debug\character control.exe.config
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\bin\Debug\character control.exe
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\bin\Debug\character control.pdb
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.csproj.AssemblyReference.cache
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.csproj.SuggestedBindingRedirects.cache
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character_control.Form1.resources
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character_control.Properties.Resources.resources
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.csproj.GenerateResource.cache
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.csproj.CoreCompileInputs.cache
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.exe
+C:\Users\kiraly_mark\Source\Repos\02.09-Projektmunka\character control\character control\character control\obj\Debug\character control.pdb

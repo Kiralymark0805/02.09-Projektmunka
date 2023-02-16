@@ -120,13 +120,13 @@ namespace character_control
                 enemy.BackColor = Color.Red;
                 enemy.Tag = "enemy";
 
-                int enemyx = Randomnumber.Next(this.ClientSize.Width - enemy.Width);
-                int enemyy = Randomnumber.Next(this.ClientSize.Height - enemy.Height);
+                int enemyx = Randomnumber.Next(this.house.Width - enemy.Width);
+                int enemyy = Randomnumber.Next(this.house.Height - enemy.Height);
 
                 enemy.Location = new Point(enemyx, enemyy);
 
                 enemylist.Add(enemy); 
-                this.Controls.Add(enemy);
+                house.Controls.Add(enemy);
             }
 
         }
@@ -142,23 +142,30 @@ namespace character_control
                 key.BackColor = Color.Green;
                 key.Tag = "keys";
 
-                int keyx = Randomnumber.Next(this.ClientSize.Width - key.Width);
-                int keyy = Randomnumber.Next(this.ClientSize.Height - key.Height);
+                int keyx = Randomnumber.Next(this.house.Width - key.Width);
+                int keyy = Randomnumber.Next(this.house.Height - key.Height);
 
                 key.Location = new Point(keyx, keyy);
 
                 keylist.Add(key);
-                this.Controls.Add(key);
+                house.Controls.Add(key);
+               
             }
+        }
+
+        private void room1_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void Playermovement()
         {
+
             if (Moveleft == true && player.Left > 0)
             {
                 player.Left -= playerspeed;
             }
-            if (Moveright == true && player.Left < 1740)
+            if (Moveright == true && player.Left < 1305)
             {
                 player.Left += playerspeed;
             }
@@ -166,7 +173,7 @@ namespace character_control
             {
                 player.Top -= playerspeed;
             }
-            if (Movedown == true && player.Top < 840)
+            if (Movedown == true && player.Top < 683)
             {
                 player.Top += playerspeed;
             }
