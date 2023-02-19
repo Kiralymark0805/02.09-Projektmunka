@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.player = new System.Windows.Forms.PictureBox();
             this.playertimer = new System.Windows.Forms.Timer(this.components);
             this.keytext = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,21 +56,11 @@
             this.panel20 = new System.Windows.Forms.Panel();
             this.house = new System.Windows.Forms.GroupBox();
             this.panel21 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
+            this.player = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.house.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.SuspendLayout();
-            // 
-            // player
-            // 
-            this.player.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.player.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player.BackgroundImage")));
-            this.player.Location = new System.Drawing.Point(476, 439);
-            this.player.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(60, 60);
-            this.player.TabIndex = 0;
-            this.player.TabStop = false;
             // 
             // playertimer
             // 
@@ -112,9 +101,9 @@
             // groupBox1
             // 
             this.groupBox1.Location = new System.Drawing.Point(31, 28);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(237, 201);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
@@ -122,9 +111,9 @@
             // groupBox4
             // 
             this.groupBox4.Location = new System.Drawing.Point(31, 28);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(245, 201);
             this.groupBox4.TabIndex = 24;
             this.groupBox4.TabStop = false;
@@ -293,6 +282,7 @@
             // 
             // house
             // 
+            this.house.Controls.Add(this.player);
             this.house.Controls.Add(this.panel21);
             this.house.Controls.Add(this.panel20);
             this.house.Controls.Add(this.panel19);
@@ -314,11 +304,10 @@
             this.house.Controls.Add(this.panel3);
             this.house.Controls.Add(this.panel2);
             this.house.Controls.Add(this.panel1);
-            this.house.Controls.Add(this.player);
             this.house.Location = new System.Drawing.Point(169, 55);
-            this.house.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.house.Margin = new System.Windows.Forms.Padding(4);
             this.house.Name = "house";
-            this.house.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.house.Padding = new System.Windows.Forms.Padding(4);
             this.house.Size = new System.Drawing.Size(1296, 762);
             this.house.TabIndex = 23;
             this.house.TabStop = false;
@@ -332,6 +321,17 @@
             this.panel21.Size = new System.Drawing.Size(91, 22);
             this.panel21.TabIndex = 23;
             // 
+            // player
+            // 
+            this.player.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.player.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player.BackgroundImage")));
+            this.player.Location = new System.Drawing.Point(456, 453);
+            this.player.Margin = new System.Windows.Forms.Padding(4);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(60, 60);
+            this.player.TabIndex = 0;
+            this.player.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -340,7 +340,7 @@
             this.Controls.Add(this.house);
             this.Controls.Add(this.keytext);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1800, 900);
             this.MinimumSize = new System.Drawing.Size(1800, 900);
             this.Name = "Form1";
@@ -349,17 +349,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keydownpress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyuppress);
-            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.panel2.ResumeLayout(false);
             this.house.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.Timer playertimer;
         private System.Windows.Forms.Label keytext;
         private System.Windows.Forms.Panel panel1;
@@ -386,6 +384,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox house;
         private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.PictureBox player;
     }
 }
 

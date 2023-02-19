@@ -37,7 +37,7 @@ namespace character_control
         private void movetimerevent(object sender, EventArgs e)
         {
 
-            Playermovement();
+           Playermovement();
             Enemymovement();
             Walls();
             Gameover();
@@ -112,7 +112,6 @@ namespace character_control
 
         private void Walls()
         {
-
             panellist.Add(panel1);
             panellist.Add(panel2);
             panellist.Add(panel3);
@@ -134,37 +133,6 @@ namespace character_control
             panellist.Add(panel19);
             panellist.Add(panel20);
             panellist.Add(panel21);
-
-            foreach (Panel wall in panellist)
-            {
-                if (player.Bounds.IntersectsWith(wall.Bounds))
-                {
-                    int playerX = player.Location.X;
-                    int playerY = player.Location.Y;
-                    int playerSW = player.Size.Width;
-                    int playerSH = player.Size.Height;
-
-                    int wallX = wall.Location.X;
-                    int wallY = wall.Location.Y;
-
-                    if (playerX > wallX - playerSW)
-                    {
-                        player.Left -= playerspeed;
-                    }
-                    if (playerX < wallX - playerSW)
-                    {
-                        player.Left += playerspeed;
-                    }
-                    if (playerY > wallY - playerSH)
-                    {
-                        player.Top -= playerspeed;
-                    }
-                    if (playerY < wallY - playerSH)
-                    {
-                        player.Top += playerspeed;
-                    }
-                }
-            }
         }
 
         private void Makeenemies()
@@ -212,24 +180,57 @@ namespace character_control
         }
         private void Playermovement()
         {
+            player.Tag = "player";
+            house.Controls.Add(player);
 
-            if (Moveleft == true && player.Left > 0)
-            {
-                player.Left -= playerspeed;
+            PictureBox move = new PictureBox();
+            move.Width = player.Width;
+            move.Height = player.Height;
+            move.Left = player.Left;
+            move.Top = player.Top;
+
+            bool canmove = true;
+
+            if (Moveleft) 
+            { 
+                move.Left -= playerspeed; 
             }
-            if (Moveright == true && player.Left < 1305)
-            {
-                player.Left += playerspeed;
+
+            if (Moveright) 
+            { 
+                move.Left += playerspeed; 
             }
-            if (Moveup == true && player.Top > 0)
-            {
-                player.Top -= playerspeed;
+
+            if (Moveup) 
+            { 
+                move.Top -= playerspeed; 
             }
-            if (Movedown == true && player.Top < 683)
+
+            if (Movedown) 
+            { 
+                move.Top += playerspeed;
+            }
+
+            foreach (Panel wall in panellist)
             {
-                player.Top += playerspeed;
+
+                if (move.Bounds.IntersectsWith(wall.Bounds)) {
+
+                    canmove = false;
+
+                }
+
+            }
+
+            if (canmove)
+            {
+
+                player.Left = move.Left;
+                player.Top = move.Top;
+
             }
         }
+
 
         private void Enemymovement()
         {
