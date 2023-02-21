@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -26,9 +27,13 @@ namespace character_control
         int playerspeed = 10;
         int enemyspeed = 1;
 
-        int enemycount = 2;
-        int keycount = 3;
+        int enemycount = 3;
+        int enemyattack = 0;
+
+        int keycount = 1;
         int pickedupkeys = 0;
+
+        bool win = false;
         public Form1()
         {
             InitializeComponent();
@@ -37,7 +42,7 @@ namespace character_control
         private void movetimerevent(object sender, EventArgs e)
         {
 
-           Playermovement();
+            Playermovement();
             Enemymovement();
             Walls();
             Gameover();
@@ -46,31 +51,31 @@ namespace character_control
         private void Form1_Load(object sender, EventArgs e)
         {
             Makeenemies();
-            MakeKeys(); 
+            MakeKeys();
         }
 
         private void keydownpress(object sender, KeyEventArgs e)
         {
 
-                if (e.KeyCode == Keys.Left )
-                {
-                    Moveleft = true;
-                }
+            if (e.KeyCode == Keys.Left)
+            {
+                Moveleft = true;
+            }
 
-                if (e.KeyCode == Keys.Right)
-                {
-                    Moveright = true;
-                }
+            if (e.KeyCode == Keys.Right)
+            {
+                Moveright = true;
+            }
 
-                if (e.KeyCode == Keys.Up)
-                {
-                    Moveup = true;
-                }
+            if (e.KeyCode == Keys.Up)
+            {
+                Moveup = true;
+            }
 
-                if (e.KeyCode == Keys.Down)
-                {
-                    Movedown = true;
-                }
+            if (e.KeyCode == Keys.Down)
+            {
+                Movedown = true;
+            }
 
             foreach (PictureBox key in keylist)
             {
@@ -151,16 +156,17 @@ namespace character_control
 
                 enemy.Location = new Point(enemyx, enemyy);
 
-                enemylist.Add(enemy); 
+                enemylist.Add(enemy);
                 house.Controls.Add(enemy);
-            }
 
+            }
         }
 
         private void MakeKeys()
         {
             while (keylist.Count != keycount)
-            {
+            { 
+                
 
                 PictureBox key = new PictureBox();
                 key.Width = 20;
@@ -172,12 +178,11 @@ namespace character_control
                 int keyy = Randomnumber.Next(this.house.Height - key.Height);
 
                 key.Location = new Point(keyx, keyy);
-
                 keylist.Add(key);
                 house.Controls.Add(key);
-               
             }
         }
+
         private void Playermovement()
         {
             player.Tag = "player";
@@ -191,35 +196,35 @@ namespace character_control
 
             bool canmove = true;
 
-            if (Moveleft) 
-            { 
-                move.Left -= playerspeed; 
+            if (Moveleft)
+            {
+                move.Left -= playerspeed;
             }
 
-            if (Moveright) 
-            { 
-                move.Left += playerspeed; 
+            if (Moveright)
+            {
+                move.Left += playerspeed;
             }
 
-            if (Moveup) 
-            { 
-                move.Top -= playerspeed; 
+            if (Moveup)
+            {
+                move.Top -= playerspeed;
             }
 
-            if (Movedown) 
-            { 
+            if (Movedown)
+            {
                 move.Top += playerspeed;
             }
 
             foreach (Panel wall in panellist)
             {
 
-                if (move.Bounds.IntersectsWith(wall.Bounds)) {
+                if (move.Bounds.IntersectsWith(wall.Bounds))
+                {
 
                     canmove = false;
 
                 }
-
             }
 
             if (canmove)
@@ -260,7 +265,7 @@ namespace character_control
                 }
             }
         }
-      
+
         private void Gameover()
         {
             foreach (PictureBox enemy in enemylist)
@@ -268,6 +273,48 @@ namespace character_control
                 if (player.Bounds.IntersectsWith(enemy.Bounds))
                 {
                     house.Controls.Remove(enemy);
+                    enemyattack++;
+                }
+            }
+
+            if (enemyattack == enemycount)
+            {
+               deathpicture.Width = ClientSize.Width;
+               deathpicture.Height = ClientSize.Height;
+               deathpicture.Visible = true;
+               var deathbackground = new Bitmap(character_control.Properties.Resources.dead);
+               deathpicture.BackgroundImage = deathbackground;
+
+
+            }
+
+            foreach (PictureBox key in keylist)
+            {
+
+                if (pickedupkeys == keycount)
+                {
+                    PictureBox winplace = new PictureBox();
+                    winplace.Width = 50;
+                    winplace.Height = 50;
+                    winplace.Location = new Point(100, 0);
+                    winplace.BackColor = Color.Black;
+                    winplace.Tag = "winplace";
+
+                    house.Controls.Add(winplace);
+
+                    if (player.Bounds.IntersectsWith(winplace.Bounds))
+                    {
+                        wintext.Text = "WIN";
+                        win = true;
+
+                        foreach (PictureBox enemy in enemylist)
+                        {
+                            if (win = true)
+                            {
+                                house.Controls.Remove(enemy);
+                            }
+                        }
+                    }
                 }
             }
         }

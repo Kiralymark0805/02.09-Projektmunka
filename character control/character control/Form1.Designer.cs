@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.playertimer = new System.Windows.Forms.Timer(this.components);
             this.keytext = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,11 +54,15 @@
             this.panel19 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.house = new System.Windows.Forms.GroupBox();
-            this.panel21 = new System.Windows.Forms.Panel();
             this.player = new System.Windows.Forms.PictureBox();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.wintext = new System.Windows.Forms.Label();
+            this.deathpicture = new System.Windows.Forms.PictureBox();
+            this.deathtimer = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.house.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deathpicture)).BeginInit();
             this.SuspendLayout();
             // 
             // playertimer
@@ -157,10 +160,10 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel6.Location = new System.Drawing.Point(284, 406);
+            this.panel6.Location = new System.Drawing.Point(284, 420);
             this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(24, 354);
+            this.panel6.Size = new System.Drawing.Size(24, 341);
             this.panel6.TabIndex = 11;
             // 
             // panel7
@@ -301,9 +304,9 @@
             this.house.Controls.Add(this.panel9);
             this.house.Controls.Add(this.panel5);
             this.house.Controls.Add(this.panel4);
-            this.house.Controls.Add(this.panel3);
             this.house.Controls.Add(this.panel2);
             this.house.Controls.Add(this.panel1);
+            this.house.Controls.Add(this.panel3);
             this.house.Location = new System.Drawing.Point(169, 55);
             this.house.Margin = new System.Windows.Forms.Padding(4);
             this.house.Name = "house";
@@ -311,6 +314,16 @@
             this.house.Size = new System.Drawing.Size(1296, 762);
             this.house.TabIndex = 23;
             this.house.TabStop = false;
+            // 
+            // player
+            // 
+            this.player.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.player.Location = new System.Drawing.Point(471, 478);
+            this.player.Margin = new System.Windows.Forms.Padding(4);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(67, 62);
+            this.player.TabIndex = 0;
+            this.player.TabStop = false;
             // 
             // panel21
             // 
@@ -321,24 +334,41 @@
             this.panel21.Size = new System.Drawing.Size(91, 22);
             this.panel21.TabIndex = 23;
             // 
-            // player
+            // wintext
             // 
-            this.player.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.player.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player.BackgroundImage")));
-            this.player.Location = new System.Drawing.Point(456, 453);
-            this.player.Margin = new System.Windows.Forms.Padding(4);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(60, 60);
-            this.player.TabIndex = 0;
-            this.player.TabStop = false;
+            this.wintext.AutoSize = true;
+            this.wintext.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.wintext.Location = new System.Drawing.Point(64, 138);
+            this.wintext.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.wintext.Name = "wintext";
+            this.wintext.Size = new System.Drawing.Size(0, 29);
+            this.wintext.TabIndex = 24;
+            // 
+            // deathpicture
+            // 
+            this.deathpicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.deathpicture.Enabled = false;
+            this.deathpicture.Location = new System.Drawing.Point(0, -2);
+            this.deathpicture.Name = "deathpicture";
+            this.deathpicture.Size = new System.Drawing.Size(1802, 902);
+            this.deathpicture.TabIndex = 25;
+            this.deathpicture.TabStop = false;
+            this.deathpicture.Visible = false;
+            // 
+            // deathtimer
+            // 
+            this.deathtimer.Enabled = true;
+            this.deathtimer.Interval = 1000;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1800, 900);
-            this.Controls.Add(this.house);
+            this.Controls.Add(this.deathpicture);
+            this.Controls.Add(this.wintext);
             this.Controls.Add(this.keytext);
+            this.Controls.Add(this.house);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1800, 900);
@@ -352,6 +382,7 @@
             this.panel2.ResumeLayout(false);
             this.house.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deathpicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,6 +416,9 @@
         private System.Windows.Forms.GroupBox house;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.PictureBox player;
+        private System.Windows.Forms.Label wintext;
+        private System.Windows.Forms.PictureBox deathpicture;
+        private System.Windows.Forms.Timer deathtimer;
     }
 }
 
