@@ -24,16 +24,19 @@ namespace character_control
 
         bool Moveup, Movedown, Moveleft, Moveright;
 
+        int countdown = 0;
+
         int playerspeed = 10;
         int enemyspeed = 1;
 
         int enemycount = 3;
-        int enemyattack = 0;
 
         int keycount = 1;
         int pickedupkeys = 0;
 
         bool win = false;
+        bool death = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -165,8 +168,8 @@ namespace character_control
         private void MakeKeys()
         {
             while (keylist.Count != keycount)
-            { 
-                
+            {
+
 
                 PictureBox key = new PictureBox();
                 key.Width = 20;
@@ -180,6 +183,16 @@ namespace character_control
                 key.Location = new Point(keyx, keyy);
                 keylist.Add(key);
                 house.Controls.Add(key);
+            }
+        }
+
+        private void deathtimer_Tick(object sender, EventArgs e)
+        {
+            countdown--;
+
+            if (countdown == 0)
+            {
+                deathtimer.Stop();
             }
         }
 
@@ -273,19 +286,20 @@ namespace character_control
                 if (player.Bounds.IntersectsWith(enemy.Bounds))
                 {
                     house.Controls.Remove(enemy);
-                    enemyattack++;
+
+                    deathpicture.Width = ClientSize.Width;
+                    deathpicture.Height = ClientSize.Height;
+                    deathpicture.Visible = true;
+                    var deathbackground = new Bitmap(character_control.Properties.Resources.dead);
+                    deathpicture.BackgroundImage = deathbackground;
+                    death = true;
                 }
             }
 
-            if (enemyattack == enemycount)
+            if (death == true)
             {
-               deathpicture.Width = ClientSize.Width;
-               deathpicture.Height = ClientSize.Height;
-               deathpicture.Visible = true;
-               var deathbackground = new Bitmap(character_control.Properties.Resources.dead);
-               deathpicture.BackgroundImage = deathbackground;
-
-
+                countdown = 5;
+                deathtimer.Start();
             }
 
             foreach (PictureBox key in keylist)

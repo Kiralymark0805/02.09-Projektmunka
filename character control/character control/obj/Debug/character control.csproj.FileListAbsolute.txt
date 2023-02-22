@@ -64,3 +64,14 @@ C:\Users\kiraly_mark\Documents\0221 projekt\02.09-Projektmunka\character control
 C:\Users\kiraly_mark\Documents\0221 projekt\02.09-Projektmunka\character control\character control\obj\Debug\character control.csproj.CoreCompileInputs.cache
 C:\Users\kiraly_mark\Documents\0221 projekt\02.09-Projektmunka\character control\character control\obj\Debug\character control.exe
 C:\Users\kiraly_mark\Documents\0221 projekt\02.09-Projektmunka\character control\character control\obj\Debug\character control.pdb
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\bin\Debug\character control.exe.config
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\bin\Debug\character control.exe
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\bin\Debug\character control.pdb
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character control.csproj.AssemblyReference.cache
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character control.csproj.SuggestedBindingRedirects.cache
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character_control.Form1.resources
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character_control.Properties.Resources.resources
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character control.csproj.GenerateResource.cache
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character control.csproj.CoreCompileInputs.cache
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character control.exe
+C:\Users\Diák\Source\Repos\02.09-Projektmunka\character control\character control\obj\Debug\character control.pdb
