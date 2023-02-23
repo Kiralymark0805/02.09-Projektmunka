@@ -21,21 +21,18 @@ namespace menu
         List<PictureBox> enemylist = new List<PictureBox>();
         List<PictureBox> keylist = new List<PictureBox>();
         List<Panel> panellist = new List<Panel>();
-        List<PictureBox> winplacelist = new List<PictureBox>();
 
         bool Moveup, Movedown, Moveleft, Moveright;
 
         int playerspeed = 10;
         int enemyspeed = 1;
 
-        int enemycount = 2;
+        int enemycount = 1;
        
-
         int keycount = 5;
         int pickedupkeys = 0;
 
-        bool win = false;
-        bool enemymove = true;
+        bool won = false;
         public jatek()
         {
             InitializeComponent();
@@ -48,7 +45,6 @@ namespace menu
             Enemymovement();
             Walls();
             Gameover();
-            Win();
         }
 
         private void jatek_Load(object sender, EventArgs e)
@@ -93,6 +89,38 @@ namespace menu
 
                     }
                     
+                }
+            }
+
+            if (pickedupkeys == keycount)
+            {
+                PictureBox winplace = new PictureBox();
+                winplace.Width = 50;
+                winplace.Height = 40;
+                winplace.Location = new Point(100, 0);
+                winplace.BackColor = Color.Black;
+
+                house.Controls.Add(winplace);
+
+                if (player.Bounds.IntersectsWith(winplace.Bounds))
+                {
+
+                    if (e.KeyCode == Keys.O)
+                    {
+                        won = true;
+                        this.Hide();
+                        jatekvege win = new jatekvege();
+                        win.ShowDialog();
+                        this.Close();
+
+                        foreach (PictureBox enemy in enemylist)
+                        {
+                            enemylist.Clear();
+                            house.Controls.Remove(enemy);
+                            
+                        }
+                    }
+                   
                 }
             }
 
@@ -242,35 +270,31 @@ namespace menu
             }
         }
 
-
         private void Enemymovement()
         {
-            if (enemymove == true)
+  
+            foreach (Control enemies in house.Controls)
             {
-
-                foreach (Control enemies in house.Controls)
+                if ((string)enemies.Tag == "enemy")
                 {
-                    if ((string)enemies.Tag == "enemy")
+                    if (enemies.Left > player.Left)
                     {
-                        if (enemies.Left > player.Left)
-                        {
-                            enemies.Left -= enemyspeed;
-                        }
+                        enemies.Left -= enemyspeed;
+                    }
 
-                        if (enemies.Left < player.Left)
-                        {
-                            enemies.Left += enemyspeed;
-                        }
+                    if (enemies.Left < player.Left)
+                    {
+                        enemies.Left += enemyspeed;
+                    }
 
-                        if (enemies.Top > player.Top)
-                        {
-                            enemies.Top -= enemyspeed;
-                        }
+                    if (enemies.Top > player.Top)
+                    {
+                        enemies.Top -= enemyspeed;
+                    }
 
-                        if (enemies.Top < player.Top)
-                        {
-                            enemies.Top += enemyspeed;
-                        }
+                    if (enemies.Top < player.Top)
+                    {
+                        enemies.Top += enemyspeed;
                     }
                 }
             }
@@ -278,53 +302,33 @@ namespace menu
 
         private void Gameover()
         {
-            foreach (PictureBox enemy in enemylist)
+            if (won != true)
             {
-                if (player.Bounds.IntersectsWith(enemy.Bounds))
+                foreach (PictureBox enemy in enemylist)
                 {
+                    if (player.Bounds.IntersectsWith(enemy.Bounds))
+                    {
+                        house.Controls.Remove(enemy);
+                        enemylist.Clear();
+
+                        this.Hide();
+                        playmenu menu = new playmenu();
+                        menu.ShowDialog();
+                        this.Close();
+
+                    }
+                }
+            }
+
+            else
+            {
+                foreach (PictureBox enemy in enemylist)
+                {
+
                     house.Controls.Remove(enemy);
-                    enemylist.Clear();
-
-                    this.Hide();
-                    playmenu menu = new playmenu();
-                    menu.ShowDialog();
-                    this.Close();
-
 
                 }
-
-            }
-
+            }   
         }   
-        private void Win()
-        {
-            if (pickedupkeys == keycount)
-            {
-                PictureBox winplace = new PictureBox();
-                winplace.Width = 50;
-                winplace.Height = 40;
-                winplace.Location = new Point(100, 0);
-                winplace.BackColor = Color.Black;
-                winplace.Tag = "winplace";
-
-                house.Controls.Add(winplace);
-
-                if (player.Bounds.IntersectsWith(winplace.Bounds))
-                {
-                   
-
-                    win = true;
-                    enemymove = false;
-                }
-
-                if (win == true)
-                {
-                    this.Hide();
-                    jatekvege won = new jatekvege();
-                    won.ShowDialog();
-                    this.Close();
-                }
-            }
-        }
     }   
 }
