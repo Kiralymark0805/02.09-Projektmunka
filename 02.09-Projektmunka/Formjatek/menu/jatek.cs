@@ -27,9 +27,9 @@ namespace menu
         bool Moveup, Movedown, Moveleft, Moveright;
 
         int playerspeed = 15;
-        int enemyspeed = 5;
+        int enemyspeed = 2;
 
-        int enemycount = 1;
+        int enemycount = 2;
        
         int keycount = 5;
         int pickedupkeys = 0;
@@ -222,15 +222,7 @@ namespace menu
             }
         }
 
-        private void player_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void house_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void Playermovement()
         {

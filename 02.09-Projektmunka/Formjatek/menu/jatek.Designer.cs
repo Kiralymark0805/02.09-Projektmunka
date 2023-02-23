@@ -327,7 +327,6 @@
             this.house.Size = new System.Drawing.Size(972, 619);
             this.house.TabIndex = 23;
             this.house.TabStop = false;
-            this.house.Enter += new System.EventHandler(this.house_Enter);
             // 
             // player
             // 
@@ -338,7 +337,6 @@
             this.player.Size = new System.Drawing.Size(50, 50);
             this.player.TabIndex = 0;
             this.player.TabStop = false;
-            this.player.Click += new System.EventHandler(this.player_Click);
             // 
             // panel21
             // 
