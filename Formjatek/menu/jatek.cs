@@ -83,9 +83,12 @@ namespace menu
                 {
                     if (e.KeyCode == Keys.F)
                     { 
+
                         pickedupkeys++;
                         keytext.Text = "kulcsok száma: " + pickedupkeys.ToString();
                         house.Controls.Remove(key);
+                        keylist.Remove(key);
+
                     }
                     
                 }
@@ -286,9 +289,6 @@ namespace menu
 
             }
 
-            foreach (PictureBox key in keylist)
-            {
-
                 if (pickedupkeys == keycount)
                 {
                     PictureBox winplace = new PictureBox();
@@ -309,28 +309,14 @@ namespace menu
                             if (win == true)
                             {
                                 house.Controls.Remove(enemy);
-
-                                //itt nyer a játékos, ha akarsz átdobhat egy win oldalra és timerrel megoldhatod hogy egy idő után dobjon vissza a menübe
-
-                                /*
-                                Ezeről a hibákról tudok denem tudok vele mit kezdeni mostmár:
-                                Ha a játékos meghal és viszadob a playmenube, ha bezárod a formot akkor hibaüzenetet dob mert megváltozott az enemylist hossza és azzal nincs kedvem foglalkozni mostmár
-                                ha rámész egy kulcsra és felveszed azután is tudsz af-el kulcsokat felvenni.
-                                ezekkel nem nagyon tudokmostmár mit csinálni.
-                                A kulcsok betudnak spawnolni a panelek alá.
-
-                                A játéknál ha változtatni akarsz ezeket tudod.
-                                minden változó a tetején.
-
-                                enemycount = az enemyk darabszáma.
-                                keycount = kulcsok száma.
-                                enemy, playerspeed = sebesség;
-                                 */
+                                
+                                this.Hide();
+                                jatekvege won = new jatekvege();
+                            won.ShowDialog();
                             }
                         }
                     }
                 }
-            }
         }
     }
 }

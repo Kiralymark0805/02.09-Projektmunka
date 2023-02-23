@@ -70,6 +70,12 @@
     <Compile Include="jatek.designer.cs">
       <DependentUpon>jatek.cs</DependentUpon>
     </Compile>
+    <Compile Include="jatekvege.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jatekvege.Designer.cs">
+      <DependentUpon>jatekvege.cs</DependentUpon>
+    </Compile>
     <Compile Include="menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <EmbeddedResource Include="jatek.resx">
       <DependentUpon>jatek.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="jatekvege.resx">
+      <DependentUpon>jatekvege.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="menu.resx">
       <DependentUpon>menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +119,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -123,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="win.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
