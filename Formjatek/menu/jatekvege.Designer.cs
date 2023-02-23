@@ -38,7 +38,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::menu.Properties.Resources.win;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, -2);
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(801, 454);
             this.pictureBox1.TabIndex = 0;
@@ -47,6 +47,7 @@
             // wontimer
             // 
             this.wontimer.Interval = 1000;
+            this.wontimer.Tick += new System.EventHandler(this.wontimer_Tick);
             // 
             // jatekvege
             // 
@@ -59,6 +60,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "jatekvege";
             this.Text = "jatekvege";
+            this.Load += new System.EventHandler(this.jatekvege_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

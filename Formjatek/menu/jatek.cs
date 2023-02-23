@@ -21,6 +21,7 @@ namespace menu
         List<PictureBox> enemylist = new List<PictureBox>();
         List<PictureBox> keylist = new List<PictureBox>();
         List<Panel> panellist = new List<Panel>();
+        List<PictureBox> winplacelist = new List<PictureBox>();
 
         bool Moveup, Movedown, Moveleft, Moveright;
 
@@ -28,12 +29,13 @@ namespace menu
         int enemyspeed = 1;
 
         int enemycount = 2;
+       
 
         int keycount = 5;
         int pickedupkeys = 0;
 
         bool win = false;
-
+        bool enemymove = true;
         public jatek()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace menu
             Enemymovement();
             Walls();
             Gameover();
+            Win();
         }
 
         private void jatek_Load(object sender, EventArgs e)
@@ -87,7 +90,6 @@ namespace menu
                         pickedupkeys++;
                         keytext.Text = "kulcsok száma: " + pickedupkeys.ToString();
                         house.Controls.Remove(key);
-                        keylist.Remove(key);
 
                     }
                     
@@ -243,28 +245,32 @@ namespace menu
 
         private void Enemymovement()
         {
-            foreach (Control enemies in house.Controls)
+            if (enemymove == true)
             {
-                if ((string)enemies.Tag == "enemy")
+
+                foreach (Control enemies in house.Controls)
                 {
-                    if (enemies.Left > player.Left)
+                    if ((string)enemies.Tag == "enemy")
                     {
-                        enemies.Left -= enemyspeed;
-                    }
+                        if (enemies.Left > player.Left)
+                        {
+                            enemies.Left -= enemyspeed;
+                        }
 
-                    if (enemies.Left < player.Left)
-                    {
-                        enemies.Left += enemyspeed;
-                    }
+                        if (enemies.Left < player.Left)
+                        {
+                            enemies.Left += enemyspeed;
+                        }
 
-                    if (enemies.Top > player.Top)
-                    {
-                        enemies.Top -= enemyspeed;
-                    }
+                        if (enemies.Top > player.Top)
+                        {
+                            enemies.Top -= enemyspeed;
+                        }
 
-                    if (enemies.Top < player.Top)
-                    {
-                        enemies.Top += enemyspeed;
+                        if (enemies.Top < player.Top)
+                        {
+                            enemies.Top += enemyspeed;
+                        }
                     }
                 }
             }
@@ -278,45 +284,47 @@ namespace menu
                 {
                     house.Controls.Remove(enemy);
                     enemylist.Clear();
-                    
+
                     this.Hide();
                     playmenu menu = new playmenu();
                     menu.ShowDialog();
                     this.Close();
 
-                    
+
                 }
 
             }
 
-                if (pickedupkeys == keycount)
+        }   
+        private void Win()
+        {
+            if (pickedupkeys == keycount)
+            {
+                PictureBox winplace = new PictureBox();
+                winplace.Width = 50;
+                winplace.Height = 40;
+                winplace.Location = new Point(100, 0);
+                winplace.BackColor = Color.Black;
+                winplace.Tag = "winplace";
+
+                house.Controls.Add(winplace);
+
+                if (player.Bounds.IntersectsWith(winplace.Bounds))
                 {
-                    PictureBox winplace = new PictureBox();
-                    winplace.Width = 50;
-                    winplace.Height = 50;
-                    winplace.Location = new Point(100, 0);
-                    winplace.BackColor = Color.Black;
-                    winplace.Tag = "winplace";
+                   
 
-                    house.Controls.Add(winplace);
-
-                    if (player.Bounds.IntersectsWith(winplace.Bounds))
-                    {
-                        win = true;
-
-                        foreach (PictureBox enemy in enemylist)
-                        {
-                            if (win == true)
-                            {
-                                house.Controls.Remove(enemy);
-                                
-                                this.Hide();
-                                jatekvege won = new jatekvege();
-                            won.ShowDialog();
-                            }
-                        }
-                    }
+                    win = true;
+                    enemymove = false;
                 }
+
+                if (win == true)
+                {
+                    this.Hide();
+                    jatekvege won = new jatekvege();
+                    won.ShowDialog();
+                    this.Close();
+                }
+            }
         }
-    }
+    }   
 }
